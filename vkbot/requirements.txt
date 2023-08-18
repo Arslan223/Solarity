@@ -1,0 +1,4 @@
+vkbottle
+peewee
+pydantic[dotenv]
+psycopg2
