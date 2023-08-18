@@ -20,7 +20,7 @@ async def prepare_command(message, args: tp.Tuple[str]) -> tp.Optional[
     if chat is None:
         chat = Chat.create(vk_id=message.peer_id)
 
-    if await vk_comm.is_user_admin(message.from_id, message.peer_id):
+    if not(await vk_comm.is_user_admin(message.from_id, message.peer_id)):
         return "Вы не являетесь администратором чата.", None
 
     vk_id = None
@@ -57,7 +57,7 @@ async def readonly_command_handler(message) -> tp.Optional[str]:
     if chat is None:
         chat = Chat.create(vk_id=message.peer_id)
 
-    if await vk_comm.is_user_admin(message.from_id, message.peer_id):
+    if not (await vk_comm.is_user_admin(message.from_id, message.peer_id)):
         return "Вы не являетесь администратором чата."
 
     chat.set_readonly(not chat.is_readonly)
